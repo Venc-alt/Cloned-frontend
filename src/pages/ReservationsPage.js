@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import ReservationForm from '../components/ReservationForm';
 import { getReservations, reserveGateway, getGateways } from '../api/api';
 
-
 const ReservationsPage = () => {
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);

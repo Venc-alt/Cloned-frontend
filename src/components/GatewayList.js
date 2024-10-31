@@ -1,6 +1,6 @@
 // src/components/GatewayList.js
 import React, { useState, useEffect } from 'react';
-import { getGateways } from '../api';
+import { getGateways } from '../api/api';
 
 const GatewayList = () => {
   const [gateways, setGateways] = useState([]);

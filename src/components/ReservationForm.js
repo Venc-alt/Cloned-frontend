@@ -1,6 +1,6 @@
 // src/components/ReservationForm.js
 import React, { useState, useEffect } from 'react';
-import { getGateways, reserveGateway } from '../api';
+import { getGateways, reserveGateway } from '../api/api';
 
 const ReservationForm = () => {
   const [gateways, setGateways] = useState([]);
