@@ -1,19 +1,23 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import UserRegistration from './components/UserRegistration';
+import Navbar from './components/Navbar';
+import HomePage from './pages/HomePage';
 import GatewaysPage from './pages/GatewaysPage';
 import ReservationsPage from './pages/ReservationsPage';
 
-function App() {
+const App = () => {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<UserRegistration />} />
-        <Route path="/gateways" element={<GatewaysPage />} />
-        <Route path="/reservations" element={<ReservationsPage />} />
-      </Routes>
+      <Navbar />
+      <div className="container mt-4">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/gateways" element={<GatewaysPage />} />
+          <Route path="/reservations" element={<ReservationsPage />} />
+        </Routes>
+      </div>
     </Router>
   );
-}
+};
 
 export default App;
