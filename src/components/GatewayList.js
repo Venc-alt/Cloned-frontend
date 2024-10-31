@@ -22,18 +22,32 @@ const GatewayList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Gateway List</h2>
+    <div className="container mt-4">
+      <h2 className="text-center mb-4">Gateway List</h2>
       {loading ? (
-        <p>Loading...</p>
+        <p className="text-center">Loading...</p>
       ) : (
-        <ul>
+        <div className="row">
           {gateways.map((gateway) => (
-            <li key={gateway._id}>
-              {gateway.name} - Status: {gateway.status}
-            </li>
+            <div key={gateway._id} className="col-md-4 mb-3">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title">{gateway.name}</h5>
+                  <p className="card-text">
+                    Status:{" "}
+                    <span
+                      className={`badge ${
+                        gateway.status === 'available' ? 'bg-success' : 'bg-danger'
+                      }`}
+                    >
+                      {gateway.status}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

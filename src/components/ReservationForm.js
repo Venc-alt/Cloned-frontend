@@ -28,7 +28,6 @@ const ReservationForm = () => {
       const reservationData = { gatewayId, userId, timeSlot };
       await reserveGateway(reservationData);
       setMessage('Reservation successful!');
-      // Clear the form fields after successful submission
       setGatewayId('');
       setUserId('');
       setTimeSlot('');
@@ -39,13 +38,18 @@ const ReservationForm = () => {
   };
 
   return (
-    <div>
-      <h2>Reservation Form</h2>
-      {message && <p>{message}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Gateway:</label>
-          <select value={gatewayId} onChange={(e) => setGatewayId(e.target.value)} required>
+    <div className="container mt-4">
+      <h2 className="text-center mb-4">Reservation Form</h2>
+      {message && <div className="alert alert-info">{message}</div>}
+      <form onSubmit={handleSubmit} className="card p-4 shadow-sm">
+        <div className="mb-3">
+          <label className="form-label">Gateway:</label>
+          <select
+            className="form-select"
+            value={gatewayId}
+            onChange={(e) => setGatewayId(e.target.value)}
+            required
+          >
             <option value="">Select a gateway</option>
             {gateways.map((gateway) => (
               <option key={gateway._id} value={gateway._id}>
@@ -54,27 +58,29 @@ const ReservationForm = () => {
             ))}
           </select>
         </div>
-        <div>
-          <label>User ID:</label>
+        <div className="mb-3">
+          <label className="form-label">User ID:</label>
           <input
             type="text"
+            className="form-control"
             value={userId}
             onChange={(e) => setUserId(e.target.value)}
             placeholder="Enter user ID"
             required
           />
         </div>
-        <div>
-          <label>Time Slot:</label>
+        <div className="mb-3">
+          <label className="form-label">Time Slot:</label>
           <input
             type="text"
+            className="form-control"
             value={timeSlot}
             onChange={(e) => setTimeSlot(e.target.value)}
             placeholder="e.g., 10:00 AM - 11:00 AM"
             required
           />
         </div>
-        <button type="submit">Reserve Gateway</button>
+        <button type="submit" className="btn btn-primary w-100">Reserve Gateway</button>
       </form>
     </div>
   );

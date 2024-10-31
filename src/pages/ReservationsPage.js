@@ -23,18 +23,25 @@ const ReservationsPage = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Reservations Page</h2>
-      <ReservationForm />
+    <div className="container mt-4">
+      <h2 className="text-center mb-4">Reservations Page</h2>
 
-      <h3>Existing Reservations</h3>
+      <div className="mb-5">
+        <ReservationForm />
+      </div>
+
+      <h3 className="text-center mb-3">Existing Reservations</h3>
       {loading ? (
-        <p>Loading reservations...</p>
+        <p className="text-center">Loading reservations...</p>
       ) : (
-        <ul>
+        <ul className="list-group">
           {reservations.map((reservation) => (
-            <li key={reservation._id}>
-              Gateway: {reservation.gatewayId.name} - User ID: {reservation.userId} - Time Slot: {reservation.timeSlot}
+            <li key={reservation._id} className="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                <strong>Gateway:</strong> {reservation.gatewayId.name} <br />
+                <strong>User ID:</strong> {reservation.userId} <br />
+                <strong>Time Slot:</strong> {reservation.timeSlot}
+              </div>
             </li>
           ))}
         </ul>
