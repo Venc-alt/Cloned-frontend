@@ -29,6 +29,7 @@ const ReservationForm = () => {
 
     try {
       const reservationData = { gatewayId, userId, timeSlot };
+      console.log(reservationData)
       await reserveGateway(reservationData);
       setMessage('Reservation successful!');
       setGatewayId('');
