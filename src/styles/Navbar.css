@@ -1,0 +1,8 @@
+.navbar {
+    background-color: #1a1a2e; /* A richer dark color */
+  }
+  
+  .nav-link:hover {
+    color: #ffcc00; /* Change to a different color on hover */
+  }
+  
