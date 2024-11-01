@@ -46,7 +46,7 @@ const ReservationsPage = () => {
               <div>
                 <strong>Gateway:</strong> {reservation.gatewayId?.name || 'N/A'} <br />
                 <strong>User:</strong> {reservation.userId?.name || 'N/A'} <br />
-                <strong>Time Slot:</strong> {reservation.timeSlot || 'N/A'}
+                <strong>Time Slot:</strong> {reservation.startTime && reservation.endTime ? `${reservation.startTime} - ${reservation.endTime}` : 'N/A'}
               </div>
               <button
                 className="btn btn-danger btn-sm"
