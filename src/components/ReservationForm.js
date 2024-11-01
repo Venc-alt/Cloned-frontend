@@ -25,11 +25,11 @@ const ReservationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const timeSlot = `${startTime} - ${endTime}`; // Combine start and end time into one string
-
+  
     try {
-      const reservationData = { gatewayId, userId, timeSlot };
-      console.log(reservationData)
+      // Use startTime and endTime as separate fields, as expected by the backend
+      const reservationData = { gatewayId, userId, startTime, endTime };
+      console.log(reservationData);
       await reserveGateway(reservationData);
       setMessage('Reservation successful!');
       setGatewayId('');
@@ -41,7 +41,7 @@ const ReservationForm = () => {
       console.error('Error reserving gateway:', error);
     }
   };
-
+  
   return (
     <div className="container mt-4">
       <h2 className="text-center mb-4">Reservation Form</h2>
