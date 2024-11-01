@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import ReservationForm from '../components/ReservationForm';
 import { getReservations, cancelReservation } from '../api/api';
@@ -25,41 +24,56 @@ const ReservationsPage = () => {
   const handleCancel = async (reservationId) => {
     try {
       await cancelReservation(reservationId);
-      // Refresh the reservations after a successful cancel
-      fetchReservations();
+      fetchReservations(); // Refresh reservations after a successful cancel
     } catch (error) {
       console.error('Error canceling reservation:', error);
     }
   };
 
   return (
-    <div className="container mt-4">
-      <h2 className="text-center mb-4">Reservations Page</h2>
-      <ReservationForm />
+    <div className="container mt-5">
+      <div className="mb-5 p-4 bg-light rounded shadow-sm">
+        <h2 className="text-center text-primary mb-3">Manage Your Reservations</h2>
+        <ReservationForm />
+      </div>
 
-      <h3 className="text-center mb-3">Existing Reservations</h3>
-      {loading ? (
-        <p className="text-center">Loading reservations...</p>
-      ) : (
-        <ul className="list-group">
-          {reservations.map((reservation) => (
-            <li key={reservation._id} className="list-group-item d-flex justify-content-between align-items-center">
-              <div>
-                <strong>Gateway:</strong> {reservation.gatewayId?.name || 'N/A'} <br />
-                <strong>User:</strong> {reservation.userId?.name || 'N/A'} <br />
-                <strong>Date:</strong> {reservation.date || 'N/A'} <br />
-                <strong>Time Slot:</strong> {reservation.startTime && reservation.endTime ? `${reservation.startTime} - ${reservation.endTime}` : 'N/A'}
+      <div className="reservation-list-section">
+        <h3 className="text-center text-secondary mb-4">Current Reservations</h3>
+        {loading ? (
+          <div className="text-center">
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        ) : reservations.length > 0 ? (
+          <div className="row">
+            {reservations.map((reservation) => (
+              <div key={reservation._id} className="col-md-6 mb-4">
+                <div className="card shadow-sm">
+                  <div className="card-body">
+                    <h5 className="card-title text-dark">
+                      <strong>Gateway:</strong> {reservation.gatewayId?.name || 'N/A'}
+                    </h5>
+                    <p className="card-text">
+                      <strong>User:</strong> {reservation.userId?.name || 'N/A'} <br />
+                      <strong>Date:</strong> {reservation.date || 'N/A'} <br />
+                      <strong>Time Slot:</strong> {reservation.startTime && reservation.endTime ? `${reservation.startTime} - ${reservation.endTime}` : 'N/A'}
+                    </p>
+                    <button
+                      className="btn btn-outline-danger btn-sm w-100"
+                      onClick={() => handleCancel(reservation._id)}
+                    >
+                      Cancel Reservation
+                    </button>
+                  </div>
+                </div>
               </div>
-              <button
-                className="btn btn-danger btn-sm"
-                onClick={() => handleCancel(reservation._id)}
-              >
-                Cancel
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-muted">No reservations found.</p>
+        )}
+      </div>
     </div>
   );
 };
