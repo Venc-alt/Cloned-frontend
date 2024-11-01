@@ -5,9 +5,8 @@ import { getGateways, reserveGateway } from '../api/api';
 const ReservationForm = () => {
   const [gateways, setGateways] = useState([]);
   const [gatewayId, setGatewayId] = useState('');
-  const [userId, setUserId] = useState('');
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
+  const [userId, setUserId] = useState(''); // You may want to dynamically set this based on logged-in user
+  const [timeSlot, setTimeSlot] = useState(''); // Single input for manual time entry
   const [message, setMessage] = useState('');
 
   useEffect(() => {
@@ -25,17 +24,14 @@ const ReservationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const timeSlot = `${startTime} - ${endTime}`; // Combine start and end time into one string
 
     try {
       const reservationData = { gatewayId, userId, timeSlot };
-      console.log(reservationData)
       await reserveGateway(reservationData);
       setMessage('Reservation successful!');
       setGatewayId('');
       setUserId('');
-      setStartTime('');
-      setEndTime('');
+      setTimeSlot('');
     } catch (error) {
       setMessage('Failed to reserve the gateway. Please try again.');
       console.error('Error reserving gateway:', error);
@@ -75,22 +71,13 @@ const ReservationForm = () => {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Start Time:</label>
+          <label className="form-label">Time Slot:</label>
           <input
-            type="time"
+            type="text"
             className="form-control"
-            value={startTime}
-            onChange={(e) => setStartTime(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">End Time:</label>
-          <input
-            type="time"
-            className="form-control"
-            value={endTime}
-            onChange={(e) => setEndTime(e.target.value)}
+            value={timeSlot}
+            onChange={(e) => setTimeSlot(e.target.value)}
+            placeholder="e.g., 10:00 AM - 11:00 AM"
             required
           />
         </div>
