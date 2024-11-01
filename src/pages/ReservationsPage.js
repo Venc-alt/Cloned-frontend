@@ -1,26 +1,36 @@
 // src/pages/ReservationsPage.js
 import React, { useState, useEffect } from 'react';
 import ReservationForm from '../components/ReservationForm';
-import { getReservations } from '../api/api';
+import { getReservations, cancelReservation } from '../api/api';
 
 const ReservationsPage = () => {
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch reservations on component mount
-    const fetchReservations = async () => {
-      try {
-        const response = await getReservations();
-        setReservations(response.data);
-      } catch (error) {
-        console.error('Error fetching reservations:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchReservations();
   }, []);
+
+  const fetchReservations = async () => {
+    setLoading(true);
+    try {
+      const response = await getReservations();
+      setReservations(response.data);
+    } catch (error) {
+      console.error('Error fetching reservations:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCancel = async (reservationId) => {
+    try {
+      await cancelReservation(reservationId);
+      setReservations(reservations.filter(reservation => reservation._id !== reservationId));
+    } catch (error) {
+      console.error('Error cancelling reservation:', error);
+    }
+  };
 
   return (
     <div className="container mt-4">
@@ -42,6 +52,12 @@ const ReservationsPage = () => {
                 <strong>User ID:</strong> {reservation.userId} <br />
                 <strong>Time Slot:</strong> {reservation.timeSlot}
               </div>
+              <button
+                className="btn btn-danger btn-sm"
+                onClick={() => handleCancel(reservation._id)}
+              >
+                Cancel
+              </button>
             </li>
           ))}
         </ul>
