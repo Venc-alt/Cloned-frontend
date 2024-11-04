@@ -30,35 +30,33 @@ const ReservationForm = () => {
     e.preventDefault();
     console.log('Selected Returns:', selectedReturns); // Debug log
 
-    // Ensure selectedReturns is an array of objects with detailed data (if needed)
-    const detailedReturns = selectedReturns.map((returnId) => {
-      const returnItem = returns.find((item) => item._id === returnId);
-      return returnItem ? { _id: returnItem._id, name: returnItem.name } : null;
-    }).filter(Boolean);
+    // Ensure selectedReturns only contain IDs
+    const returnIds = selectedReturns.map((returnId) => returnId._id || returnId);
 
     try {
-      const reservationData = {
-        gatewayId,
-        returnIds: detailedReturns, // Include detailed return items
-        userId,
-        date,
-        startTime,
-        endTime,
-      };
-      console.log('Submitting reservation:', reservationData);
-      await reserveGateway(reservationData);
-      setMessage('Reservation successful!');
-      setGatewayId('');
-      setSelectedReturns([]);
-      setUserId('');
-      setDate('');
-      setStartTime('');
-      setEndTime('');
+        const reservationData = {
+            gatewayId,
+            returnIds, // Include only IDs here
+            userId,
+            date,
+            startTime,
+            endTime,
+        };
+        console.log('Submitting reservation:', reservationData);
+        await reserveGateway(reservationData);
+        setMessage('Reservation successful!');
+        setGatewayId('');
+        setSelectedReturns([]);
+        setUserId('');
+        setDate('');
+        setStartTime('');
+        setEndTime('');
     } catch (error) {
-      setMessage('Failed to reserve. Please try again.');
-      console.error('Error reserving:', error);
+        setMessage('Failed to reserve. Please try again.');
+        console.error('Error reserving:', error);
     }
-  };
+};
+
 
   const handleReturnsChange = (e) => {
     const options = e.target.options;
