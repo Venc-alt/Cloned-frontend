@@ -1,47 +1,3 @@
-
-// import React, { useEffect, useState } from 'react';
-// import GatewayList from '../components/GatewayList';
-// import { getReturns } from '../api/api';
-
-// const GatewaysPage = () => {
-//   const [returns, setReturns] = useState([]);
-
-//   useEffect(() => {
-//     const fetchReturns = async () => {
-//       try {
-//         const response = await getReturns();
-//         setReturns(response.data);
-//       } catch (error) {
-//         console.error('Error fetching returns:', error);
-//       }
-//     };
-
-//     fetchReturns();
-//   }, []);
-
-//   return (
-//     <div>
-//       <h2>Gateways Page</h2>
-//       <GatewayList />
-      
-//       <h3 className="mt-4">Returns</h3>
-//       {returns.length > 0 ? (
-//         <ul className="list-group">
-//           {returns.map((returnItem) => (
-//             <li key={returnItem._id} className="list-group-item">
-//               {returnItem.name}
-//             </li>
-//           ))}
-//         </ul>
-//       ) : (
-//         <p>No returns available.</p>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default GatewaysPage;
-
 // src/pages/GatewaysPage.js
 import React, { useState, useEffect } from 'react';
 import GatewayList from '../components/GatewayList';
@@ -75,9 +31,15 @@ const GatewaysPage = () => {
         {returns.length > 0 ? (
           <ul className="list-group">
             {returns.map((ret) => (
-              <li key={ret._id} className="list-group-item">
-                <strong>Name:</strong> {ret.name} <br />
-                <strong>Status:</strong> {ret.status || 'N/A'}
+              <li key={ret._id} className="list-group-item d-flex justify-content-between align-items-center">
+                <span><strong>Name:</strong> {ret.name}</span>
+                <span
+                  className={`badge ${
+                    ret.status === 'available' ? 'bg-success' : 'bg-danger'
+                  }`}
+                >
+                  {ret.status}
+                </span>
               </li>
             ))}
           </ul>
