@@ -28,6 +28,7 @@ const ReservationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Selected Returns:', selectedReturns); // Debug log
 
     // Ensure selectedReturns is an array of objects with detailed data (if needed)
     const detailedReturns = selectedReturns.map((returnId) => {
@@ -38,7 +39,7 @@ const ReservationForm = () => {
     try {
       const reservationData = {
         gatewayId,
-        returns: detailedReturns, // Include detailed return items
+        returnIds: detailedReturns, // Include detailed return items
         userId,
         date,
         startTime,
