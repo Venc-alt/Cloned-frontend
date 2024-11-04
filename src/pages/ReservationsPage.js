@@ -15,6 +15,7 @@ const ReservationsPage = () => {
   const fetchReservations = async () => {
     try {
       const response = await getReservations();
+      console.log(response.data); // Add this line to inspect the reservations data
       setReservations(response.data);
     } catch (error) {
       console.error("Error fetching reservations:", error);
@@ -22,6 +23,7 @@ const ReservationsPage = () => {
       setLoading(false);
     }
   };
+  
 
   const fetchReturns = async () => {
     try {
