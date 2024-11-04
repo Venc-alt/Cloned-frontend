@@ -1,12 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
 import { getGateways, getReturns, reserveGateway } from '../api/api';
 
 const ReservationForm = () => {
   const [gateways, setGateways] = useState([]);
-  const [returns, setReturns] = useState([]); // State for returns
+  const [returns, setReturns] = useState([]);
   const [gatewayId, setGatewayId] = useState('');
-  const [selectedReturns, setSelectedReturns] = useState([]); // State for selected returns
+  const [selectedReturns, setSelectedReturns] = useState([]);
   const [userId, setUserId] = useState('');
   const [date, setDate] = useState('');
   const [startTime, setStartTime] = useState('');
@@ -30,10 +29,22 @@ const ReservationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Ensure selectedReturns is an array of objects with detailed data (if needed)
+    const detailedReturns = selectedReturns.map((returnId) => {
+      const returnItem = returns.find((item) => item._id === returnId);
+      return returnItem ? { _id: returnItem._id, name: returnItem.name } : null;
+    }).filter(Boolean);
+
     try {
-      // Include selected returns in the reservation data
-      const reservationData = { gatewayId, selectedReturns, userId, date, startTime, endTime };
-      console.log(reservationData);
+      const reservationData = {
+        gatewayId,
+        returns: detailedReturns, // Include detailed return items
+        userId,
+        date,
+        startTime,
+        endTime,
+      };
+      console.log('Submitting reservation:', reservationData);
       await reserveGateway(reservationData);
       setMessage('Reservation successful!');
       setGatewayId('');
