@@ -22,17 +22,17 @@ const GatewaysPage = () => {
 
   return (
     <div>
-      <h2>Gateways Page</h2>
+      <h2>Gateways</h2>
       <GatewayList />
 
       {/* Display the status of Returns */}
       <div className="mt-5">
-        <h3>Current Returns Status</h3>
+        <h3>Current Status</h3>
         {returns.length > 0 ? (
           <ul className="list-group">
             {returns.map((ret) => (
               <li key={ret._id} className="list-group-item d-flex justify-content-between align-items-center">
-                <span><strong>Name:</strong> {ret.name}</span>
+                <span><strong> </strong> {ret.name}</span>
                 <span
                   className={`badge ${
                     ret.status === 'available' ? 'bg-success' : 'bg-danger'

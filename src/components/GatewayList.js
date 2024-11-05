@@ -23,7 +23,7 @@ const GatewayList = () => {
 
   return (
     <div className="container mt-4">
-      <h2 className="text-center mb-4">Gateway List</h2>
+      <h2 className="text-center mb-4">Available</h2>
       {loading ? (
         <p className="text-center">Loading...</p>
       ) : (

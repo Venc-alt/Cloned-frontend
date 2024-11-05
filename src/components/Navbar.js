@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-3 shadow-lg">
       <div className="container">
-        <Link className="navbar-brand fs-2 fw-bold" to="/">Gateway Reservation</Link>
+        <Link className="navbar-brand fs-2 fw-bold" to="/">Gateway Allocation</Link>
         <button
           className="navbar-toggler"
           type="button"

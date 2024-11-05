@@ -1,20 +1,4 @@
-.carousel-item {
-    position: relative;
-}
-
-.carousel-item::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
-    z-index: 1;
-}
-
-/* Ensure the text content is above the overlay */
-.carousel-caption {
-    position: relative;
-    z-index: 2;
+.carousel-item img {
+    filter: blur(4px);
+    opacity: 0.7;
 }

@@ -21,7 +21,7 @@ const UserRegistration = () => {
 
   return (
     <div className="container mt-4">
-      <h2 className="text-center mb-4">User Registration</h2>
+      <h2 className="text-center mb-4">Tech Registration</h2>
       {message && <div className="alert alert-info">{message}</div>}
       <form onSubmit={handleSubmit} className="card p-4 shadow-sm">
         <div className="mb-3">

@@ -15,7 +15,7 @@ const HomePage = () => {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <div className="hero-section text-white p-5 d-flex flex-column align-items-center justify-content-center text-center"
-              style={{ backgroundImage: 'url(/images/dashboard_illustration.jpg)', backgroundSize: 'cover', height: '60vh', backgroundPosition: 'center' }}>
+              style={{ backgroundImage: 'url(/images/Tech_Background.jpg)', backgroundSize: 'cover', height: '60vh', backgroundPosition: 'center' }}>
               <h1 className="display-4 fw-bold mb-3">Welcome, Tech Team</h1>
               <p className="lead mb-4">Simplify your work with seamless gateway management and reservations.</p>
               <div className="d-flex gap-3">
@@ -26,7 +26,7 @@ const HomePage = () => {
           </div>
           <div className="carousel-item">
             <div className="hero-section text-white p-5 d-flex flex-column align-items-center justify-content-center text-center"
-              style={{ backgroundImage: 'url(/images/Illustrate_a_sleek_futuristic_scene.jpg)', backgroundSize: 'cover', height: '60vh', backgroundPosition: 'center' }}>
+              style={{ backgroundImage: 'url(/images/Tech_Background.jpg)', backgroundSize: 'cover', height: '60vh', backgroundPosition: 'center' }}>
               <h1 className="display-4 fw-bold mb-3">Fast and Efficient</h1>
               <p className="lead mb-4">Quickly book gateways with our intuitive and efficient reservation system.</p>
               <Link to="/reservations" className="btn btn-warning btn-lg shadow-sm">Get Started</Link>
@@ -34,7 +34,7 @@ const HomePage = () => {
           </div>
           <div className="carousel-item">
             <div className="hero-section text-white p-5 d-flex flex-column align-items-center justify-content-center text-center"
-              style={{ backgroundImage: 'url(/images/Secure_reservations.jpg)', backgroundSize: 'cover', height: '60vh', backgroundPosition: 'center' }}>
+              style={{ backgroundImage: 'url(/images/Tech_Background.jpg)', backgroundSize: 'cover', height: '60vh', backgroundPosition: 'center' }}>
               <h1 className="display-4 fw-bold mb-3">Reliable & Secure</h1>
               <p className="lead mb-4">Ensure a secure environment for managing and accessing gateways.</p>
               <Link to="/register" className="btn btn-outline-light btn-lg shadow-sm">Join Us</Link>

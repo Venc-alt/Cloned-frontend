@@ -71,7 +71,7 @@ const ReservationForm = () => {
 
   return (
     <div className="container mt-4">
-      <h2 className="text-center mb-4">Reservation Form</h2>
+      <h2 className="text-center mb-4">***</h2>
       {message && <div className="alert alert-info">{message}</div>}
       <form onSubmit={handleSubmit} className="card p-4 shadow-sm">
         <div className="mb-3">
